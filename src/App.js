@@ -31,7 +31,7 @@ const App = () => {
         </div>
       </Sider>
 
-      <Content>
+      <Content className="contentWindow">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/album" element={<Album />} />
