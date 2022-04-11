@@ -25,10 +25,62 @@ const Home = () => {
           </div>
         </TabPane>
         <TabPane tab="Genres & Moods" key="2">
-          Content of Tab Pane 2
+          <h1 className="featuredTitle">Pop Hits</h1>
+          <div className="albums">
+            {library.slice(4, 13).map((album) => (
+              <Link to={`/album`} state={album} className="albumSelection">
+                <img
+                  src={album.image}
+                  alt="something"
+                  style={{ width: "150px", marginBottom: "10px" }}
+                />
+                <p>{album.title}</p>
+              </Link>
+            ))}
+          </div>
         </TabPane>
         <TabPane tab="New Releases" key="3">
-          Content of Tab Pane 3
+          <div className="scrollable-Container">
+            <h1 className="featuredTitle">Pop Music</h1>
+            <div className="albums">
+              {library.slice(0, 6).map((album) => (
+                <Link to={`/album`} state={album} className="albumSelection">
+                  <img
+                    src={album.image}
+                    alt="something"
+                    style={{ width: "150px", marginBottom: "10px" }}
+                  />
+                  <p>{album.title}</p>
+                </Link>
+              ))}
+            </div>
+            <h1 className="featuredTitle">Top Music</h1>
+            <div className="albums">
+              {library.slice(7, 11).map((album) => (
+                <Link to={`/album`} state={album} className="albumSelection">
+                  <img
+                    src={album.image}
+                    alt="something"
+                    style={{ width: "150px", marginBottom: "10px" }}
+                  />
+                  <p>{album.title}</p>
+                </Link>
+              ))}
+            </div>
+            <h1 className="featuredTitle">Country</h1>
+            <div className="albums">
+              {library.slice(11, 13).map((album) => (
+                <Link to={`/album`} state={album} className="albumSelection">
+                  <img
+                    src={album.image}
+                    alt="something"
+                    style={{ width: "150px", marginBottom: "10px" }}
+                  />
+                  <p>{album.title}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
         </TabPane>
       </Tabs>
     </>

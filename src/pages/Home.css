@@ -10,7 +10,7 @@
 }
 
 .albums {
-  padding-top: 10px;
+  padding: 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -20,10 +20,14 @@
   gap: 20px;
   row-gap: 50px;
   -webkit-box-pack: start;
-  overflow-y: scroll;
-  height: calc(100vh - 320px);
+  /* overflow-y: auto; */
+  /* height: calc(100vh - 310px); */
+  /* padding-bottom: auto; */
 }
-
+.scrollable-Container {
+  overflow-y: auto;
+  height: calc(100vh - 170px);
+}
 .albumSelection {
   color: rgb(205, 203, 203);
   text-align: center;
