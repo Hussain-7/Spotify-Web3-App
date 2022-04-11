@@ -1,3 +1,4 @@
+
 .featuredTitle {
   color: white;
   font-size: 35px;
@@ -20,9 +21,9 @@
   gap: 20px;
   row-gap: 50px;
   -webkit-box-pack: start;
-  /* overflow-y: auto; */
-  /* height: calc(100vh - 310px); */
-  /* padding-bottom: auto; */
+  /* overflow-y: auto;
+  height: calc(100vh - 310px);
+  padding-bottom: auto; */
 }
 .scrollable-Container {
   overflow-y: auto;

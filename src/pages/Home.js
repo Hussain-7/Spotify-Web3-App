@@ -31,7 +31,7 @@ const Home = () => {
         </TabPane>
         <TabPane tab="Genres & Moods" key="2">
           <h1 className="featuredTitle">Pop Hits</h1>
-          <div className="albums">
+          <div className="albums ">
             {library.slice(4, 13).map((album, i) => (
               <Link
                 key={i}
