@@ -7,7 +7,7 @@ const Home = () => {
 return(
   <>
   <div className="container">
-     <Link to="/album" className="link">Album Page</Link>
+      <Link to="/album" className="link">Album Page</Link>
   </div>
   </>
 )
