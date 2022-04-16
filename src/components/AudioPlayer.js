@@ -1,4 +1,4 @@
-// import useAudio from "../hooks/useAudio";
+import useAudio from "../hooks/useAudio";
 import { Slider } from "antd";
 import { useIPFS } from "../hooks/useIPFS";
 import "./AudioPlayer.css";
@@ -10,9 +10,30 @@ import {
   PauseCircleFilled,
 } from "@ant-design/icons";
 
-const Player = ({ nftAlbum }) => {
+const Player = ({ url }) => {
   const { resolveLink } = useIPFS();
-  console.log(resolveLink(JSON.parse(nftAlbum[0].metadata).image));
+  const [
+    playing,
+    duration,
+    toggle,
+    toNextTrack,
+    toPrevTrack,
+    trackProgress,
+    onSearch,
+    onSearchEnd,
+    onVolume,
+    trackIndex,
+  ] = useAudio(url);
+
+  const minSec = (secs) => {
+    const minutes = Math.floor(secs / 60);
+    const returnMin = minutes < 10 ? `0${minutes}` : minutes;
+    const seconds = Math.floor(secs % 60);
+    const returnSec = seconds < 10 ? `0${seconds}` : seconds;
+
+    return `${returnMin}:${returnSec}`;
+  };
+
   return (
     <>
       <div
@@ -21,32 +42,49 @@ const Player = ({ nftAlbum }) => {
       >
         <img
           className="cover"
-          src={resolveLink(JSON.parse(nftAlbum[0].metadata).image)}
-          alt="currenCover"
+          src={resolveLink(JSON.parse(url[trackIndex].metadata).image)}
+          alt="currentCover"
         />
         <div>
-          {" "}
           <div className="songTitle">
-            {JSON.parse(nftAlbum[0].metadata).name}
+            {JSON.parse(url[trackIndex].metadata).name}
           </div>
-          <div className="songAlbum">{nftAlbum[0].name}</div>
+          <div className="songAlbum">{url[trackIndex].name}</div>
         </div>
       </div>
       <div>
         <div className="buttons">
-          <StepBackwardOutlined className="forback" />
-          <PlayCircleFilled className="pauseplay" />
-          <StepForwardOutlined className="forback" />
+          <StepBackwardOutlined className="forback" onClick={toPrevTrack} />
+          {playing ? (
+            <PauseCircleFilled className="pauseplay" onClick={toggle} />
+          ) : (
+            <PlayCircleFilled className="pauseplay" onClick={toggle} />
+          )}
+          <StepForwardOutlined className="forback" onClick={toNextTrack} />
         </div>
         <div className="buttons">
-          00:00
-          <Slider value={50} className="progress" />
-          00:00
+          {minSec(trackProgress)}
+          <Slider
+            value={trackProgress}
+            step={1}
+            min={0}
+            max={duration ? duration : 0}
+            className="progress"
+            tooltipVisible={false}
+            onChange={(value) => onSearch(value)}
+            onAfterChange={onSearchEnd}
+          />
+          {duration ? minSec(Math.round(duration)) : "00:00"}
         </div>
       </div>
       <div className="soundDiv">
         <SoundOutlined />
-        <Slider className="volume" defaultValue={100} tooltipVisible={false} />
+        <Slider
+          className="volume"
+          defaultValue={100}
+          tooltipVisible={false}
+          onChange={(value) => onVolume(value / 100)}
+        />
       </div>
     </>
   );
