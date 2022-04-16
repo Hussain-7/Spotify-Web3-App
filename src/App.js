@@ -47,7 +47,7 @@ const App = () => {
       </Layout>
       {nftAlbum && (
         <Footer className="footer">
-          <AudioPlayer nftAlbum={nftAlbum} />
+          <AudioPlayer url={nftAlbum} />
         </Footer>
       )}
     </Layout>

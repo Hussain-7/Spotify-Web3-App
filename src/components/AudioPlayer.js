@@ -10,7 +10,7 @@ import {
   PauseCircleFilled,
 } from "@ant-design/icons";
 
-const Player = ({ url }) => {
+const AudioPlayer = ({ url }) => {
   const { resolveLink } = useIPFS();
   const [
     playing,
@@ -90,4 +90,4 @@ const Player = ({ url }) => {
   );
 };
 
-export default Player;
+export default AudioPlayer;

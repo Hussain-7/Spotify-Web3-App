@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useIPFS } from "./useIPFS";
 
-const useAudio = (nftAlbum) => {
+const useAudio = (url) => {
+  console.log("url in useAudio", url);
   const { resolveLink } = useIPFS();
-  const [audio, setAudio] = useState(nftAlbum);
+  const [audio, setAudio] = useState(url);
   const [trackIndex, setTrackIndex] = useState(0);
   const [newSong, setNewSong] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
@@ -16,7 +17,7 @@ const useAudio = (nftAlbum) => {
   const intervalRef = useRef();
   const isReady = useRef(false);
 
-  const { duration } = audioRef;
+  const { duration } = audioRef.current;
 
   const toPrevTrack = () => {
     if (trackIndex - 1 < 0) {
@@ -34,29 +35,15 @@ const useAudio = (nftAlbum) => {
     }
   };
 
-  const toggle = () => setIsPlaying(!isPlaying);
-
   useEffect(() => {
     toggle();
-    setAudio(nftAlbum);
+    setAudio(url);
     if (trackIndex === 0) {
       setNewSong(newSong + 1);
     } else {
       setTrackIndex(0);
     }
-  }, [nftAlbum]);
-
-  const startTimer = () => {
-    clearInterval(intervalRef.current);
-
-    intervalRef.current = setInterval(() => {
-      if (audioRef.current.ended) {
-        toNextTrack();
-      } else {
-        setTrackProgress(Math.round(audioRef.current.currentTime));
-      }
-    }, [1000]);
-  };
+  }, [url]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -91,6 +78,20 @@ const useAudio = (nftAlbum) => {
     }
   }, [trackIndex, newSong]);
 
+  const toggle = () => setIsPlaying(!isPlaying);
+
+  const startTimer = () => {
+    clearInterval(intervalRef.current);
+
+    intervalRef.current = setInterval(() => {
+      if (audioRef.current.ended) {
+        toNextTrack();
+      } else {
+        setTrackProgress(Math.round(audioRef.current.currentTime));
+      }
+    }, [1000]);
+  };
+
   const onSearch = (value) => {
     clearInterval(intervalRef.current);
     audioRef.current.currentTime = value;
@@ -122,4 +123,5 @@ const useAudio = (nftAlbum) => {
     trackIndex,
   ];
 };
+
 export default useAudio;

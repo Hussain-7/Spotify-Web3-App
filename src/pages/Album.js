@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { apiResponse } from "../helpers/apiCallResponse";
 import "./Album.css";
 import Opensea from "../images/opensea.png";
@@ -58,7 +58,7 @@ const Album = ({ setNftAlbum }) => {
           albumDetails.map((nft, i) => {
             nft = JSON.parse(nft.metadata);
             return (
-              <>
+              <div key={i}>
                 <div className="tableContent">
                   <div className="numberHeader">{i + 1}</div>
                   <div
@@ -69,7 +69,7 @@ const Album = ({ setNftAlbum }) => {
                   </div>
                   <div className="numberHeader">{nft.duration}</div>
                 </div>
-              </>
+              </div>
             );
           })}
       </div>
