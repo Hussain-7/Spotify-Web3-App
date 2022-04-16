@@ -1,5 +1,6 @@
 let fs = require("fs");
 let axios = require("axios");
+require("dotenv").config();
 
 let songs = [
   "Ava Max - Sweet but Psycho.mp3",
@@ -49,8 +50,7 @@ for (let i = 0; i < songs.length; i++) {
 axios
   .post("https://deep-index.moralis.io/api/v2/ipfs/uploadFolder", ipfsArray, {
     headers: {
-      "X-API-KEY":
-        "FmpB7bIckgJMbg6gOqCnrBpPHj2hd6WdlwcZ6wFoqCuWswR2t4f1dqy65jarTL2I",
+      "X-API-KEY": process.env.API_KEY,
       "Content-Type": "application/json",
       accept: "application/json",
     },

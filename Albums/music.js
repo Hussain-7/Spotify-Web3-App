@@ -1,6 +1,7 @@
 let fs = require("fs");
 let axios = require("axios");
 const path = require("path");
+require("dotenv").config();
 
 let media = [
   "cover.jpg",
@@ -40,8 +41,7 @@ Promise.all(promises).then(() => {
   axios
     .post("https://deep-index.moralis.io/api/v2/ipfs/uploadFolder", ipfsArray, {
       headers: {
-        "X-API-KEY":
-          "FmpB7bIckgJMbg6gOqCnrBpPHj2hd6WdlwcZ6wFoqCuWswR2t4f1dqy65jarTL2I",
+        "X-API-KEY": process.env.API_KEY,
         "Content-Type": "application/json",
         accept: "application/json",
       },
