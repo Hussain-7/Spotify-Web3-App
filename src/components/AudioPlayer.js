@@ -45,7 +45,7 @@ const AudioPlayer = ({ url }) => {
           src={resolveLink(JSON.parse(url[trackIndex].metadata).image)}
           alt="currentCover"
         />
-        <div>
+        <div className="">
           <div className="songTitle">
             {JSON.parse(url[trackIndex].metadata).name}
           </div>
