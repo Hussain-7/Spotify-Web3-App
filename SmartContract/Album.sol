@@ -26,3 +26,8 @@ contract NFT is ERC721URIStorage {
         return newItemId;
     }
 }
+
+// This smart contract was deployed with remix.
+// https://polygonscan.com/address/0x951F542EBb877048b3Fd7C32f685312AC99EBa0C
+
+// https://mumbai.polygonscan.com/token/0x951f542ebb877048b3fd7c32f685312ac99eba0c

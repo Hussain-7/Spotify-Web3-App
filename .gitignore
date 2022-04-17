@@ -2,3 +2,4 @@ node_modules
 .prettierrc
 Albums/export/*
 Albums/.env
+.env

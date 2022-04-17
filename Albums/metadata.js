@@ -10,34 +10,22 @@ let songs = [
   "Glass Animals - Heat Waves.mp3",
 ];
 let animation_url = [
-  "https://ipfs.moralis.io:2053/ipfs/QmdgYdsLnD6f1sPFkEE8Kb6BWbZKTZbrVsBSCgeysLfBiU/media/1",
-  "https://ipfs.moralis.io:2053/ipfs/QmdgYdsLnD6f1sPFkEE8Kb6BWbZKTZbrVsBSCgeysLfBiU/media/2",
-  "https://ipfs.moralis.io:2053/ipfs/QmefbQ7SkQMixLsXmpAWQyyPsuKiRjVExXcWowHzUjiQH5/media/3",
-  "https://ipfs.moralis.io:2053/ipfs/QmefbQ7SkQMixLsXmpAWQyyPsuKiRjVExXcWowHzUjiQH5/media/4",
-  "https://ipfs.moralis.io:2053/ipfs/QmfEoHvurf4LJPrD2sArw6jRt2hDRqFGJ6kBUbEKAeTYoC/media/5",
+  "https://gateway.moralisipfs.com/ipfs/QmdgYdsLnD6f1sPFkEE8Kb6BWbZKTZbrVsBSCgeysLfBiU/media/1",
+  "https://gateway.moralisipfs.com/ipfs/QmdgYdsLnD6f1sPFkEE8Kb6BWbZKTZbrVsBSCgeysLfBiU/media/2",
+  "https://gateway.moralisipfs.com/ipfs/QmefbQ7SkQMixLsXmpAWQyyPsuKiRjVExXcWowHzUjiQH5/media/3",
+  "https://gateway.moralisipfs.com/ipfs/QmefbQ7SkQMixLsXmpAWQyyPsuKiRjVExXcWowHzUjiQH5/media/4",
+  "https://gateway.moralisipfs.com/ipfs/QmfEoHvurf4LJPrD2sArw6jRt2hDRqFGJ6kBUbEKAeTYoC/media/5",
 ];
 
 let durations = ["3:27", "3:27", "3:55", "2:45", "2:56"];
 let ipfsArray = [];
 
 for (let i = 0; i < songs.length; i++) {
-  console.log({
-    path: `metadata/${i}.json`,
-    content: {
-      image:
-        "https://ipfs.moralis.io:2053/ipfs/QmdgYdsLnD6f1sPFkEE8Kb6BWbZKTZbrVsBSCgeysLfBiU/media/0",
-      name: songs[i],
-      animation_url: animation_url[i],
-      duration: durations[i],
-      artist: "Hussain Rizvi",
-      year: "2021",
-    },
-  });
   ipfsArray.push({
     path: `metadata/${i}.json`,
     content: {
       image:
-        "https://ipfs.moralis.io:2053/ipfs/QmdgYdsLnD6f1sPFkEE8Kb6BWbZKTZbrVsBSCgeysLfBiU/media/0",
+        "https://gateway.moralisipfs.com/ipfs/QmUG5tHQS8aw3v8KwZ4TuaF7AQC8SqEPatEwcanbTT9HvH/media/coverImage.jpeg",
       name: songs[i],
       animation_url: animation_url[i],
       duration: durations[i],
@@ -56,27 +44,15 @@ axios
     },
   })
   .then((res) => {
-    console.log(res.data);
+    console.log(
+      res.data.map((item) => {
+        return item.path.replace(
+          "https://ipfs.moralis.io:2053/ipfs/",
+          "https://gateway.moralisipfs.com/ipfs/"
+        );
+      })
+    );
   })
   .catch((error) => {
     // console.log(error);
   });
-
-// results
-const results = [
-  {
-    path: "https://ipfs.moralis.io:2053/ipfs/QmPt5dALzuWqEpnWEaM2fdGE9S7vGkgdJLr11hh4e8VNFL/metadata/0.json",
-  },
-  {
-    path: "https://ipfs.moralis.io:2053/ipfs/QmPt5dALzuWqEpnWEaM2fdGE9S7vGkgdJLr11hh4e8VNFL/metadata/1.json",
-  },
-  {
-    path: "https://ipfs.moralis.io:2053/ipfs/QmPt5dALzuWqEpnWEaM2fdGE9S7vGkgdJLr11hh4e8VNFL/metadata/2.json",
-  },
-  {
-    path: "https://ipfs.moralis.io:2053/ipfs/QmPt5dALzuWqEpnWEaM2fdGE9S7vGkgdJLr11hh4e8VNFL/metadata/3.json",
-  },
-  {
-    path: "https://ipfs.moralis.io:2053/ipfs/QmPt5dALzuWqEpnWEaM2fdGE9S7vGkgdJLr11hh4e8VNFL/metadata/4.json",
-  },
-];
