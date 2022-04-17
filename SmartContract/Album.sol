@@ -30,3 +30,5 @@ contract NFT is ERC721URIStorage {
         return newItemId;
     }
 }
+
+// The contract is deployed through remix to mumbai testnet.
