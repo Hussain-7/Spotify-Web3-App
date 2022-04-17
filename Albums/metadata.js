@@ -9,6 +9,8 @@ let songs = [
   "Olivia Rodrigo - happier.mp3",
   "Glass Animals - Heat Waves.mp3",
 ];
+
+// These animation_urls are generated through script music.js
 let animation_url = [
   "https://gateway.moralisipfs.com/ipfs/QmdgYdsLnD6f1sPFkEE8Kb6BWbZKTZbrVsBSCgeysLfBiU/media/1",
   "https://gateway.moralisipfs.com/ipfs/QmdgYdsLnD6f1sPFkEE8Kb6BWbZKTZbrVsBSCgeysLfBiU/media/2",
