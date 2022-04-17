@@ -14,20 +14,19 @@ contract NFT is ERC721URIStorage {
 
     constructor() ERC721("NonFungiMusic", "NFM") {
         owner = msg.sender;
-    }
+        createToken("https://gateway.moralisipfs.com/ipfs/QmPs2Ne7e36nZRip4HvRF3tbiPom5iyLUE6MfkzAXGsHRz/metadata/0.json");
+        createToken("https://gateway.moralisipfs.com/ipfs/QmPs2Ne7e36nZRip4HvRF3tbiPom5iyLUE6MfkzAXGsHRz/metadata/1.json");
+        createToken("https://gateway.moralisipfs.com/ipfs/QmPs2Ne7e36nZRip4HvRF3tbiPom5iyLUE6MfkzAXGsHRz/metadata/2.json");
+        createToken("https://gateway.moralisipfs.com/ipfs/QmPs2Ne7e36nZRip4HvRF3tbiPom5iyLUE6MfkzAXGsHRz/metadata/3.json");
+        createToken("https://gateway.moralisipfs.com/ipfs/QmPs2Ne7e36nZRip4HvRF3tbiPom5iyLUE6MfkzAXGsHRz/metadata/4.json");
+    }    
 
     function createToken(string memory tokenURI) public returns (uint) {
         require(msg.sender == owner, "Only owner is allowed to createTokens");
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
-
         _mint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
         return newItemId;
     }
 }
-
-// This smart contract was deployed with remix.
-// https://polygonscan.com/address/0x951F542EBb877048b3Fd7C32f685312AC99EBa0C
-
-// https://mumbai.polygonscan.com/token/0x951f542ebb877048b3fd7c32f685312ac99eba0c

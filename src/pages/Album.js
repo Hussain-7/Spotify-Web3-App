@@ -4,11 +4,13 @@ import { apiResponse } from "../helpers/apiCallResponse";
 import "./Album.css";
 import Opensea from "../images/opensea.png";
 import { ClockCircleOutlined } from "@ant-design/icons";
+import { useAlbum } from "../hooks/useAlbum";
 
 const Album = ({ setNftAlbum }) => {
-  const albumDetails = apiResponse;
-  console.log(albumDetails);
   const { state: album } = useLocation();
+  console.log("album", album);
+  const { albumDetails } = useAlbum(album.contract);
+
   return (
     <>
       <div className="albumContent">
@@ -18,11 +20,11 @@ const Album = ({ setNftAlbum }) => {
             <div>ALBUM</div>
             <div className="title">{album.title}</div>
             <div className="artist">
-              {albumDetails && JSON.parse(albumDetails[0].metadata).artist}
+              {albumDetails && JSON.parse(albumDetails[0]?.metadata).artist}
             </div>
             <div>
-              {albumDetails && JSON.parse(albumDetails[0].metadata).year} •{" "}
-              {albumDetails && albumDetails.length} Songs
+              {albumDetails && JSON.parse(albumDetails[0]?.metadata).year} •{" "}
+              {albumDetails && albumDetails?.length} Songs
             </div>
           </div>
         </div>
@@ -39,7 +41,7 @@ const Album = ({ setNftAlbum }) => {
             className="openButton"
             onClick={() =>
               window.open(
-                `https://testnets.opensea.io/assets/mumbai/${albumDetails.contract}/1`
+                `https://testnets.opensea.io/assets/mumbai/${album.contract}/1`
               )
             }
           >
@@ -55,7 +57,7 @@ const Album = ({ setNftAlbum }) => {
           </div>
         </div>
         {album &&
-          albumDetails.map((nft, i) => {
+          albumDetails?.map((nft, i) => {
             nft = JSON.parse(nft.metadata);
             return (
               <div key={i}>
